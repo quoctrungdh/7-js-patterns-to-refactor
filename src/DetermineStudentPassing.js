@@ -1,3 +1,5 @@
+const { extractAssignmentGrade, averageAssignmentGrade } = require('./helpers');
+
 function DetermineStudentPassingStatus(student) {
   this.student = student;
 }
@@ -7,15 +9,9 @@ DetermineStudentPassingStatus.prototype = Object.assign(
   DetermineStudentPassingStatus.prototype, {
     minimunPassingPercentage: 0.6,
 
-    extractAssignmentGrade(assignments) {
-      return assignments.reduce((accu, assignment) =>
-        accu.concat(assignment.grade), []);
-    },
+    extractAssignmentGrade,
 
-    averageAssignmentGrade(grades) {
-      return grades.reduce((accu, grade) =>
-        accu + grade.percentage, 0) / grades.length;
-    },
+    averageAssignmentGrade,
 
     determinePassingStatus(averagePercentage) {
       return averagePercentage >= this.minimunPassingPercentage;
